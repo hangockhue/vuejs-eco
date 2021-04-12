@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 import datetime
 
@@ -17,4 +18,6 @@ class Highlight(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
 
 class Order(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.PROTECT,editable=False , null=True)
+    total = models.IntegerField(null=True)
+    content = models.CharField(max_length=100, null=True)

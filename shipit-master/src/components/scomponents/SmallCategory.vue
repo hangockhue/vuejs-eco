@@ -25,6 +25,7 @@
                         class="ma-2"
                         outlined
                         color="info"
+                        route :to='"/shop/"+ category.id'
                       >
                         Explore
                       </v-btn>

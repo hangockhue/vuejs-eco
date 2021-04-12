@@ -71,9 +71,9 @@
             <v-list-item
               v-for="(item, index) in categorys"
               :key="index"
-              router to="/shop"
+              route :to="'/shop/' + item.id"
             >
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
+              <v-list-item-title >{{ item.name }}</v-list-item-title>
             </v-list-item>
 
           </v-card>
@@ -150,8 +150,7 @@
           ...mapState({
             categorys: state => state.categorys.categorys,
             isAuthenticated: state => state.authencation.isAuthenticated
-
-          })
+          }),
         },
         mounted() {
           this.getCategorys();

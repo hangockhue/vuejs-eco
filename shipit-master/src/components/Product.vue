@@ -27,10 +27,14 @@
           <div class="pl-6">
             <p class="display-1 mb-0">{{product.name}}</p>
             <v-card-actions class="pa-0">
-              <p class="headline font-weight-light pt-3">${{product.price}} <del style="" class="subtitle-1 font-weight-thin">$80.00</del></p>
-              <v-spacer></v-spacer>
+              <p class="headline font-weight-light pt-3">${{product.price}} 
+                <!-- <del style="" class="subtitle-1 font-weight-thin">$80.00</del> -->
+              </p>
+              <v-spacer>
               
-              <span class="body-2	font-weight-thin"> 25 REVIEWS</span>
+              </v-spacer>
+              
+              <!-- <span class="body-2	font-weight-thin"> 25 REVIEWS</span> -->
             </v-card-actions>
             <p class="subtitle-1 font-weight-thin">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Tincidunt arcu non sodales neque sodales ut etiam. Lectus arcu bibendum at varius vel pharetra. Morbi tristique senectus et netus et malesuada.
@@ -44,12 +48,14 @@
                 dense
             ></v-text-field>
             <v-btn class="primary white--text" @click="addToCart()" outlined tile dense><v-icon>mdi-cart</v-icon> ADD TO CART</v-btn>
-            <v-btn class="ml-4" outlined tile>ADD TO WISHLIST</v-btn>
+            <!-- <v-btn class="ml-4" outlined tile>ADD TO WISHLIST</v-btn> -->
 
           </div>
       </div>
       </div>
-      <product-description></product-description>
+      <product-description>
+        
+      </product-description>
     </v-container>
 
   </div>

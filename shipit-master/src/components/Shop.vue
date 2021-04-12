@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <div class="row">
-        <div
+        <!-- <div
          class="col-md-3 col-sm-3 col-xs-12"
         >
           <v-card outlined>
@@ -65,12 +65,14 @@
             </v-container>
 
           </v-card>
-        </div>
+        </div> -->
         <div
-          class="col-md-9 col-sm-9 col-xs-12"
+          class="col-md-12 col-sm-12 col-xs-12"
         >
 
-          <v-breadcrumbs class="pb-0" :items="breadcrums"></v-breadcrumbs>
+          <!-- <v-breadcrumbs class="pb-0" :items="breadcrums">
+
+          </v-breadcrumbs> -->
 
           <v-row dense>
             <v-col cols="12" sm="8" class="pl-6 pt-6">
@@ -84,7 +86,7 @@
           <v-divider></v-divider>
 
           <div class="row text-center">
-            <div class="col-md-3 col-sm-6 col-xs-12" :key="pro.id" v-for="pro in products">
+            <div class="col-md-3 col-sm-6 col-xs-12" :key="pro.id" v-for="pro in filteredProductsById">
               <v-hover v-slot:default="{ hover }">
                 <v-card
                   class="mx-auto"
@@ -118,12 +120,12 @@
               </v-hover>
             </div>
           </div>
-          <div class="text-center mt-12">
+          <!-- <div class="text-center mt-12">
             <v-pagination
               v-model="page"
               :length="6"
             ></v-pagination>
-          </div>
+          </div> -->
         </div>
       </div>
     </v-container>
@@ -144,12 +146,20 @@
     export default {
       
         computed: {
+          ...mapGetters('product', ['filterProducts']),
+          filteredProductsById() {
+            return this.filterProducts(this.$route.params.id)
+          },
           ...mapState({
-            products: state => state.product.products
-          })
+            products: state => state.product.products,
+            categorys: state => state.categorys.categorys,
+            // filterProducts: state => state.product.products.filter(product => product.category == (this.$route.params.id)),
+          }),
+
         },
         mounted() {
-          this.getProducts()
+          this.getProducts(this.$route.params.id)
+          // console.log(this.$route)
         },
         methods: {
           ...mapActions("product", ["getProducts"]),
@@ -210,4 +220,5 @@
             ],
         }),
     }
+
 </script>

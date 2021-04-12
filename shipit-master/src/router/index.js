@@ -22,9 +22,10 @@ export default new Router({
           name:'Home'
         },
         {
-          path:'/shop',
+          path:'/shop/:id',
           component:Shop,
-          name:'Shop'
+          name:'Shop',
+          props: true
         },
         {
           path:'/product/:id',

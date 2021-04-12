@@ -7,9 +7,10 @@ const getProduct = ({ commit }, productId) => {
         })
 }
 
-const getProducts = ({ commit }) => {
+const getProducts = ({ commit }, categoryId) => {
     Product.all()
         .then(response => {
+            var filterProduct = response.data.filter(product => product.category == categoryId)
             commit("SET_PRODUCTS", response.data)
         })
 }

@@ -1,7 +1,7 @@
   
 import Api from "./Api";
 
-const END_POINT = 'categorys';
+const END_POINT = 'api/categorys';
 
 export default {
     all() {

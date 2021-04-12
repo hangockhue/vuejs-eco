@@ -35,7 +35,9 @@
             <p class="subtitle-1 font-weight-light pt-3 text-center">YOU MIGHT ALSO LIKE</p>
             <v-divider></v-divider>
             <div class="row text-center">
-              <small-category v-for="category in categorys" :key="category.id" :category="category"></small-category>
+              <small-category v-for="category in categorys" :key="category.id" :category="category">
+                
+              </small-category>
             </div>
           </v-card-text>
         </div>
