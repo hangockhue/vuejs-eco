@@ -4,6 +4,7 @@ const LOGIN_SUCCESS = (state, response) => {
     localStorage.setItem('token', response.access)
     state.token = response.access;
     state.user = response.username;
+    state.id = response.id
     state.isAuthenticated = true;
     state.isLoading =  false;
 }
@@ -23,13 +24,16 @@ const LOGIN_FAIL = () => {
 const LOGOUT_SUCCESS = () => {
     state.token = null;
     state.user = null;
-    state.isAuthenticated = false;
-    state.isAuthenticated = false;
+    state.isAuthenticated = null;
     state.isLoading = false;
 }
 
 const USER_LOADED = () => {
 
+}
+
+const SET_USERINFOR = (state, response) => {
+    state.userInfor = response
 }
 
 const ERROR = (state, error) => {

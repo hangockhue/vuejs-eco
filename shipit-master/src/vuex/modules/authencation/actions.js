@@ -26,6 +26,19 @@ const signIn = ({ commit }, {username, password}) => {
         })
 }
 
+const getInformation = ({ commit } , {id, access_token}) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer ' + access_token
+        }
+    }
+    axios.get('http://localhost:8000/user/' + id, config)
+    .then(response => {
+        commit('SET_INFOR', response.data)
+    })
+}
+
 const refreshToken = ({ commit },state) => {
 
 }
@@ -38,4 +51,5 @@ export default {
     signIn,
     loadUser,
     logOut,
+    getInformation,
 }

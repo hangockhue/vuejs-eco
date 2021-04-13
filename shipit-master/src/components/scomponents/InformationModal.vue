@@ -12,7 +12,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" >
+                    <input type="text" class="form-control" value="" >
                     </div>
                 </div>
                 <div class="form-group row">
@@ -63,12 +63,8 @@ export default {
     },
     methods: {
         ...mapActions('authencation', ['signIn']),
-        signInForm() {
-            this.signIn({
-                username: this.username,
-                password: this.password
-            })
-        },
+        
+        
         test() {
             this.$emit('onOpen')
         },

@@ -27,10 +27,10 @@
       <v-btn v-if="isAuthenticated===null" icon @click="openModal">
         <v-icon>mdi-account-arrow-right</v-icon>
       </v-btn>
-      <v-btn v-if="isAuthenticated===null" icon @click="openInformation">
+      <v-btn v-if="isAuthenticated===true" icon @click="openInformation">
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
-      <v-btn v-if="isAuthenticated===true" icon >
+      <v-btn v-if="isAuthenticated===true" icon @click="logOut" >
         <v-icon>mdi-account-arrow-left</v-icon>
       </v-btn>
       <v-btn v-on="on" router to="/cart" icon>
@@ -151,6 +151,7 @@
             categorys: state => state.categorys.categorys,
             isAuthenticated: state => state.authencation.isAuthenticated,
             user: state => state.authencation.user,
+            authencation : state => state.authencation,
           }),
         },
         mounted() {
@@ -169,11 +170,13 @@
         methods: {
           ...mapActions('categorys', ['getCategorys']),
           ...mapActions('authencation', ['logOut']),
+          ...mapActions('authencation', ['getInformation']),
           openModal() {
               this.open = !this.open
           },
           openInformation() {
             this.information = !this.information
+            this.getInformation(this.$store.state.authencation.id, this.$store.state.authencation.token)
           }
         }
     }

@@ -3,4 +3,6 @@ export default {
     isAuthenticated : null,
     isLoading: false,
     user: null,
+    id: null,
+    userInfor: null
 }
