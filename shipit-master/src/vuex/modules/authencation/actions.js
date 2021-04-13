@@ -26,7 +26,16 @@ const signIn = ({ commit }, {username, password}) => {
         })
 }
 
+const refreshToken = ({ commit },state) => {
+
+}
+
+const logOut = ({commit}) => { 
+        commit('LOGOUT_SUCCESS');
+}
+
 export default {
     signIn,
     loadUser,
+    logOut,
 }

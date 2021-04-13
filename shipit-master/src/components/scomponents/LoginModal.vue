@@ -72,6 +72,7 @@ export default {
                 username: this.username,
                 password: this.password
             })
+            this.$emit('onOpen')
         },
         test() {
             this.$emit('onOpen')

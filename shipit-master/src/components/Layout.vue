@@ -22,7 +22,7 @@
       <v-spacer />
       <div>
       <v-btn v-if="isAuthenticated===true">
-        Hi . Ngoc Khue
+        Hi . {{ user }}
       </v-btn>
       <v-btn v-if="isAuthenticated===null" icon @click="openModal">
         <v-icon>mdi-account-arrow-right</v-icon>
@@ -149,7 +149,8 @@
           ...mapGetters('cart', ['cartItemCount']),
           ...mapState({
             categorys: state => state.categorys.categorys,
-            isAuthenticated: state => state.authencation.isAuthenticated
+            isAuthenticated: state => state.authencation.isAuthenticated,
+            user: state => state.authencation.user,
           }),
         },
         mounted() {
@@ -167,6 +168,7 @@
         },
         methods: {
           ...mapActions('categorys', ['getCategorys']),
+          ...mapActions('authencation', ['logOut']),
           openModal() {
               this.open = !this.open
           },

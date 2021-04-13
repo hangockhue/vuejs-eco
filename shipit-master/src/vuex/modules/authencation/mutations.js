@@ -38,4 +38,5 @@ const ERROR = (state, error) => {
 export default {
     LOGIN_SUCCESS,
     ERROR,
+    LOGOUT_SUCCESS,
 }
