@@ -39,6 +39,7 @@
                     outlined
                     :value=product.quantity
                     type="number"
+                    v-on:change="changeMount"
                   ></v-text-field>
                 </td>
                 <td>${{product.product.price*product.quantity}}</td>
@@ -127,7 +128,10 @@
           ...mapGetters('cart',['cartTotalPrice']),
         },
         methods: {
-          ...mapActions("cart" , ['removeProductFromCart'])
+          ...mapActions("cart" , ['removeProductFromCart']),
+          changeMount: function(evt) {
+              console.log(evt)
+          }
         },
         data: () => ({
             rating: 4.5,
