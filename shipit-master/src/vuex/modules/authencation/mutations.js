@@ -43,4 +43,5 @@ export default {
     LOGIN_SUCCESS,
     ERROR,
     LOGOUT_SUCCESS,
+    SET_USERINFOR,
 }

@@ -33,9 +33,11 @@ const getInformation = ({ commit } , {id, access_token}) => {
             'Authorization' : 'Bearer ' + access_token
         }
     }
-    axios.get('http://localhost:8000/user/' + id, config)
+    console.log(id, access_token)
+    axios.get('http://localhost:8000/user/' + String(id), config)
     .then(response => {
-        commit('SET_INFOR', response.data)
+        commit('SET_USERINFOR', response.data)
+        console.log(response.data)
     })
 }
 

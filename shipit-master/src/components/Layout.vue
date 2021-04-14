@@ -175,8 +175,10 @@
               this.open = !this.open
           },
           openInformation() {
-            this.information = !this.information
-            this.getInformation(this.$store.state.authencation.id, this.$store.state.authencation.token)
+            this.information = !this.information;
+            // console.log(sta, state.authencation)
+            this.getInformation({id : this.$store.state.authencation.id, 
+                                 access_token : this.$store.state.authencation.token});
           }
         }
     }

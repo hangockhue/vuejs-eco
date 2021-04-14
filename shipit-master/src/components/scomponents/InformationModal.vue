@@ -12,19 +12,19 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" value="" >
+                    <input type="text" class="form-control" :value="userInfor.firstname" >
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" :value="userInfor.email">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Địa chỉ :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" >
+                    <input type="text" class="form-control" :value="userInfor.username" >
                     </div>
                 </div>
                 <div class="form-group row">
@@ -50,6 +50,7 @@ export default {
     props: {
         open: Boolean
     },
+    
     data() {
         return{
             username:"",
@@ -57,6 +58,9 @@ export default {
         }
     },
     computed: {
+        ...mapState({
+            userInfor: state => state.authencation.userInfor
+        }),
         isOpen: function(){
             return this.open
         }
