@@ -2,22 +2,22 @@
     <div :style="isOpen ? 'display:none' : 'display:block'">
         <div class="drawer"></div>
         <div class="my-modal">
-        
+
         <div class="modal-body">
             <div class="form-title text-center">
-            <h4>Login</h4>
+            <h4>Đăng nhập</h4>
             </div>
             <div class="d-flex flex-column text-center">
             <form>
                 <div class="form-group">
-                <input type="email" class="form-control" v-model="username" id="email1" placeholder="Your email address...">
+                <input type="email" class="form-control" v-model="username" id="username" placeholder="Tài khoản...">
                 </div>
                 <div class="form-group">
-                <input type="password" class="form-control" id="password1" v-model="password" placeholder="Your password...">
+                <input type="password" class="form-control" id="password1" v-model="password" placeholder="Mật khẩu...">
                 </div>
                 <div class="form-group row">
                 <div class="col-md-6">
-                <button type="button"  @click="signInForm()" class="btn btn-info btn-block btn-round">Login</button>
+                <button type="button"  @click="signInForm()" class="btn btn-info btn-block btn-round">Đăng nhập</button>
                 </div>
                 <div class="col-md-6">
                 <button type="button"  @click="test" class="btn btn-danger btn-block btn-round">Thoát</button>
@@ -41,10 +41,10 @@
                 </div>
 
             </div> -->
-            
-        </div>  
+
+        </div>
     </div>
-   
+
 </template>
 
 <script>

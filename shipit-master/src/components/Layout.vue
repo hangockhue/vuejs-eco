@@ -11,14 +11,14 @@
       >
         <router-link to="/" class="white--text" style="text-decoration: none"><v-icon>mdi-truck</v-icon>&nbsp;Vuejs-Ecomece</router-link>
       </v-toolbar-title>
-      <!-- <v-text-field
+      <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
-        label="Search"
+        label="Tìm kiếm"
         class="hidden-sm-and-down pl-10 ml-4"
-      /> -->
+      />
       <v-spacer />
       <div>
       <v-btn v-if="isAuthenticated===true">
@@ -35,7 +35,7 @@
       </v-btn>
       <v-btn v-on="on" router to="/cart" icon>
         <v-badge
-          :content="cartItemCount" 
+          :content="cartItemCount"
           color="green"
           overlap
         >
@@ -54,12 +54,12 @@
         horizontal
       >
         <router-link to="/" class="v-btn">
-          <span>Home</span>
+          <span>Trang chủ</span>
         </router-link>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on }">
             <v-btn v-on="on">
-              <span>Shop</span>
+              <span>Danh mục</span>
             </v-btn>
           </template>
           <v-card
@@ -161,7 +161,7 @@
           return {
             showModal: false,
             activeBtn: 1,
-            on: true, 
+            on: true,
             login: false,
             open: true,
             information: true,
@@ -177,7 +177,7 @@
           openInformation() {
             this.information = !this.information;
             // console.log(sta, state.authencation)
-            this.getInformation({id : this.$store.state.authencation.id, 
+            this.getInformation({id : this.$store.state.authencation.id,
                                  access_token : this.$store.state.authencation.token});
           }
         }

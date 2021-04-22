@@ -114,7 +114,7 @@
                   </v-img>
                   <v-card-text class="text--primary">
                     <div><a href="/product" style="text-decoration: none">{{pro.name}}</a></div>
-                    <div>${{pro.price}}</div>
+                    <div>{{pro.price}} ₫</div>
                   </v-card-text>
                 </v-card>
               </v-hover>
@@ -144,7 +144,7 @@
 <script>
     import {mapGetters, mapState, mapActions} from 'vuex'
     export default {
-      
+
         computed: {
           ...mapGetters('product', ['filterProducts']),
           filteredProductsById() {
@@ -169,13 +169,11 @@
         },
         data: () => ({
             range: [0, 10000],
-            select:'Popularity',
+            select:'Mặc định',
             options: [
-                'Default',
-                'Popularity',
-                'Relevance',
-                'Price: Low to High',
-                'Price: High to Low',
+                'Mặc định',
+                'Giá: Thấp đến Cao',
+                'Giá: Cao đến Thấp',
             ],
             page:1,
             breadcrums: [

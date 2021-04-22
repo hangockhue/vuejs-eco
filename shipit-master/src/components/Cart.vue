@@ -2,17 +2,17 @@
   <div>
     <v-container>
 
-      <p class="display-3 font-weight-light	text-center pa-4">SHOPPING CART</p>
+      <p class="display-3 font-weight-light	text-center pa-4">GIỎ HÀNG</p>
       <v-row>
         <v-col :cols="12" md="9" sm="12" >
           <v-simple-table>
             <template v-slot:default>
               <thead>
               <tr>
-                <th class="text-center">ITEM</th>
-                <th class="text-center">PRICE</th>
-                <th class="text-center">QUANTITY</th>
-                <th class="text-center">TOTAL</th>
+                <th class="text-center">Sản phẩm</th>
+                <th class="text-center">Giá</th>
+                <th class="text-center">Số lượng</th>
+                <th class="text-center">Tổng</th>
                 <th class="text-center"></th>
               </tr>
               </thead>
@@ -50,23 +50,23 @@
           </v-simple-table>
         </v-col>
         <v-col :cols="12" md="3" sm="12" style="background-color: lightgray">
-          <p class="headline">Order Summary</p>
-          <p class="overline">Shipping and additional costs are calculated based on values you have entered.
+          <p class="headline">Hóa đơn</p>
+          <p class="overline">Phí ship đã được tính toàn và được cộng vào
           </p>
           <v-simple-table>
             <template v-slot:default>
               <tbody>
               <tr>
-                <td>Order Subtotal</td>
-                <td class="text-right" style="width: 50px;">${{cartTotalPrice}}</td>
+                <td>Tổng đơn hàng</td>
+                <td class="text-right" style="width: 50px;">{{cartTotalPrice}} ₫</td>
               </tr>
               <tr>
-                <td>Shipping Charges</td>
-                <td class="text-right" style="width: 50px;">$10.00</td>
+                <td>Phí Ship</td>
+                <td class="text-right" style="width: 50px;">10.00 ₫</td>
               </tr>
               <tr>
-                <td>Total</td>
-                <td class="text-right" style="width: 50px;"><b>${{cartTotalPrice + 10}}</b></td>
+                <td>Tổng</td>
+                <td class="text-right" style="width: 50px;"><b>{{cartTotalPrice + 10}} ₫</b></td>
               </tr>
               </tbody>
             </template>
@@ -154,4 +154,3 @@
             ],
     })}
 </script>
-
