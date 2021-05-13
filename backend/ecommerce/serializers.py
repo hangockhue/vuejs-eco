@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import Category, Product, Order
+from .models import Category, Product, Order, Highlight, HighlightBig
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -43,6 +43,11 @@ class LoginSerializer(serializers.Serializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = ("__all__")
+
+class HighlightSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Highlight
         fields = ("__all__")
 
 class ProductSerializer(serializers.ModelSerializer):

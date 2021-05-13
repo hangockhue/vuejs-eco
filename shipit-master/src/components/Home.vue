@@ -111,7 +111,7 @@
           >
             <h1 class="text-center font-size">Lorem & Ipsum</h1>
             <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/shop" text>SHOP NOW <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+              <v-btn class="white--text caption"  href="/shop" text>Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
           </v-img>
         </v-card>
@@ -128,7 +128,7 @@
           >
             <h1 class="text-center font-size">Lorem & Ipsum</h1>
             <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/shop" text>SHOP NOW <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+              <v-btn class="white--text caption"  href="/shop" text>Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
           </v-img>
         </v-card>
@@ -145,7 +145,7 @@
           >
             <h1 class="text-center font-size">Lorem & Ipsum</h1>
             <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/shop" text>SHOP NOW <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+              <v-btn class="white--text caption"  href="/shop" text>Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
           </v-img>
         </v-card>
@@ -343,7 +343,19 @@
 </template>
 
 <script>
+    import { mapGetters , mapState, mapActions } from 'vuex'
     export default {
+        computed: {
+          ...mapState({
+            hightlight: state => state.categorys.hightlight,
+          }),
+        },
+        mounted() {
+          // this.getHightlight();
+        },
+        methods : {
+          ...mapActions('categorys', ['getHightlight']),
+        },
         data () {
             return {
                 items: [
@@ -381,4 +393,3 @@
     width: 100%;
   }
 </style>
-

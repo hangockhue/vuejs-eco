@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from .user_api              import MyTokenObtainPairView
-from .ecommerce_api         import CategoryViewSet, ProductViewSet, OrderViewSet, ProductDetailViewSet
+from .ecommerce_api         import CategoryViewSet, ProductViewSet, OrderViewSet, ProductDetailViewSet, HighlightViewSet
 from .views                 import UserAPI
 urlpatterns = [
     # Your URLs...
@@ -16,4 +16,5 @@ urlpatterns = [
     path('api/products/', ProductViewSet.as_view(), name='products'),
     path('api/products/<int:pk>', ProductDetailViewSet.as_view(), name='productdetail'),
     path('api/order/', OrderViewSet.as_view(), name="order"),
+    path('api/hightlight/', HighlightViewSet.as_view(), name="hightlight" )
 ]
