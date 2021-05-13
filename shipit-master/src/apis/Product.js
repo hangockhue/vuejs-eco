@@ -2,10 +2,10 @@ import Api from "./Api";
 
 export default {
     all() {
-        return Api.get('api/products');
+        return Api.get('api/products/');
 
     },
     show(id) {
-        return Api.get(`api/products/${id}`);
+        return Api.get(`api/products/${id}/`);
     }
 }

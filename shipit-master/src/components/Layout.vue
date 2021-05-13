@@ -11,14 +11,16 @@
       >
         <router-link to="/" class="white--text" style="text-decoration: none"><v-icon>mdi-truck</v-icon>&nbsp;Vuejs-Ecomece</router-link>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Tìm kiếm"
         class="hidden-sm-and-down pl-10 ml-4"
-      />
+      /> -->
+      <ejs-autocomplete>
+      </ejs-autocomplete>
       <v-spacer />
       <div>
       <v-btn v-if="isAuthenticated===true">
@@ -107,6 +109,7 @@
     import LoginModal from './scomponents/LoginModal';
     import InformationModal from './scomponents/InformationModal';
     import SmallCart from './scomponents/SmallCart';
+    import { CoolSelect } from 'vue-cool-select';
     export default {
         components : {
           LoginModal,
@@ -133,6 +136,8 @@
             login: false,
             open: true,
             information: true,
+            selected: null,
+            items : ['Debian', 'Ubuntu', 'RedHat', 'Centos', 'FreeBSD', 'Arch Linux']
           }
         },
         methods: {

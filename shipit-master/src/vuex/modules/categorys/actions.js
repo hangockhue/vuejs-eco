@@ -1,5 +1,6 @@
 import Categorys from "../../../apis/Categorys"
-import Hightlight from "../../../apis/Hightlight"
+import axios from 'axios'
+// import Hightlight from "../../../apis/Hightlight"
 
 const getCategorys = ({ commit }) => {
     Categorys.all()
@@ -9,7 +10,7 @@ const getCategorys = ({ commit }) => {
 }
 
 const getHightlight = ({ commit }) => {
-    Highlight.all()
+  axios.get('http://localhost:8001/api/hightlight/')
         .then(response => {
             commit('SET_HIGHTLIGHT', response.data);
         })

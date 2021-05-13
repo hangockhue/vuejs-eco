@@ -61,7 +61,7 @@
           >
            <h1 class="text-center font-size">Top Picks</h1>
             <div class="text-center">
-              <v-btn  href="/shop" class="white--text " outlined>SHOP NOW</v-btn>
+              <v-btn  href="/shop" class="white--text " outlined>MUA NGAY</v-btn>
             </div>
 
 
@@ -92,60 +92,27 @@
           >
             <h1 class="text-center font-size">New Arrivals</h1>
             <div class="text-center">
-              <v-btn  href="/shop" class="white--text" outlined>SHOP NOW</v-btn>
+              <v-btn  href="/shop" class="white--text" outlined>MUA NGAY</v-btn>
             </div>
           </v-img>
         </v-card>
       </div>
     </div>
     <div class="pl-4 pr-4 row">
-      <div
-       class="col-md-4 col-sm-4 col-xs-12"
-      >
+      <div class="col-md-4 col-sm-4 col-xs-12" v-for="high in hightlight" :key="high.id" :high="high" >
         <v-card outlined>
           <v-img
-            :src="require('../assets/img/home/deal2.jpg')"
+            :src=high.image
             class="white--text align-center"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="300px"
           >
-            <h1 class="text-center font-size">Lorem & Ipsum</h1>
+            <h1 class="text-center font-size">{{high.description}}</h1>
             <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/shop" text>Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
-            </div>
-          </v-img>
-        </v-card>
-      </div>
-      <div
-        class="col-md-4 col-sm-4 col-xs-12"
-      >
-        <v-card outlined>
-          <v-img
-            :src="require('../assets/img/home/deal3.jpg')"
-            class="white--text align-center"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="300px"
-          >
-            <h1 class="text-center font-size">Lorem & Ipsum</h1>
-            <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/shop" text>Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
-            </div>
-          </v-img>
-        </v-card>
-      </div>
-      <div
-        class="col-md-4 col-sm-4 col-xs-12"
-      >
-        <v-card outlined>
-          <v-img
-            :src="require('../assets/img/home/deal4.jpg')"
-            class="white--text align-center"
-            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="300px"
-          >
-            <h1 class="text-center font-size">Lorem & Ipsum</h1>
-            <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/shop" text>Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+              <v-btn
+              class="white--text caption"
+              route :to='"/shop/"+high.category' text
+              >Mua ngay <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
           </v-img>
         </v-card>
@@ -351,7 +318,7 @@
           }),
         },
         mounted() {
-          // this.getHightlight();
+          this.getHightlight();
         },
         methods : {
           ...mapActions('categorys', ['getHightlight']),

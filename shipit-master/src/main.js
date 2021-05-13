@@ -5,7 +5,16 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 import store from './vuex'
 import App from './App'
 import router from './router'
+// import {VueSelect} from 'vue-cool-select'
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import {AutoCompletePlugin} from '@syncfusion/ej2-vue-dropdowns';
+
+Vue.use(AutoCompletePlugin)
+
+
+// Vue.use(VueSelect, {
+//     theme: 'bootstrap'
+// })
 
 Vue.config.productionTip = false
 
