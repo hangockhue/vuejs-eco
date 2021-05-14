@@ -19,10 +19,15 @@
         label="Tìm kiếm"
         class="hidden-sm-and-down pl-10 ml-4"
       /> -->
-      <ejs-autocomplete>
-      </ejs-autocomplete>
-      <v-spacer />
-      <div>
+      <!-- <div> -->
+        <ejs-autocomplete
+          placeholder="Tìm kiếm sản phẩm"
+          :dataSource='categorys'
+          :fields="{value: 'name'}"
+        >
+        </ejs-autocomplete>
+        <v-spacer />
+      <!-- </div> -->
       <v-btn v-if="isAuthenticated===true">
         Hi . {{ user }}
       </v-btn>
@@ -109,7 +114,6 @@
     import LoginModal from './scomponents/LoginModal';
     import InformationModal from './scomponents/InformationModal';
     import SmallCart from './scomponents/SmallCart';
-    import { CoolSelect } from 'vue-cool-select';
     export default {
         components : {
           LoginModal,
@@ -137,8 +141,14 @@
             open: true,
             information: true,
             selected: null,
-            items : ['Debian', 'Ubuntu', 'RedHat', 'Centos', 'FreeBSD', 'Arch Linux']
-          }
+            dataItem : [ {Id:'Game1', Game: 'Football'},
+                          {Id: 'Game2', Game: 'Basketball'},
+                          {Id: 'Game3', Game: 'Volleyball'},
+                          {Id: 'Game4', Game: 'Baseball'},
+                          {Id: 'Game5', Game: 'Badminton'},
+                        ],
+            dataFields : {value:'Game'}
+          };
         },
         methods: {
           ...mapActions('categorys', ['getCategorys']),
@@ -156,3 +166,13 @@
         }
     }
 </script>
+
+<style>
+  @import url(https://cdn.syncfusion.com/ej2/material.css)
+</style>
+
+<style>
+  .e-ddl.e-input-group.e-control-wrapper .e-input {
+      background: white;
+  }
+</style>

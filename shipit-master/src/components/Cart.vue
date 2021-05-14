@@ -39,7 +39,8 @@
                     outlined
                     :value=product.quantity
                     type="number"
-                    v-on:change="changeMount"
+                    min=1
+                    v-on:click="changeMount"
                   ></v-text-field>
                 </td>
                 <td>${{product.product.price*product.quantity}}</td>

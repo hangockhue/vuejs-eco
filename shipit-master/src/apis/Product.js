@@ -6,6 +6,6 @@ export default {
 
     },
     show(id) {
-        return Api.get(`api/products/${id}/`);
+        return Api.get(`api/products/${id}`);
     }
 }
