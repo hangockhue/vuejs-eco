@@ -11,14 +11,27 @@
       >
         <router-link to="/" class="white--text" style="text-decoration: none"><v-icon>mdi-truck</v-icon>&nbsp;Vuejs-Ecomece</router-link>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Tìm kiếm"
         class="hidden-sm-and-down pl-10 ml-4"
-      />
+      /> -->
+      <!-- <vue-bootstrap-typeahead 
+        v-model="query"
+        :data="['Canada', 'USA', 'Mexico']"
+        size="lg"
+        placeholder="Tìm kiếm"
+        ref="/s"
+      /> -->
+      <autocomplete
+        :search="categorys"
+        placeholder="Tìm kiếm sản phẩm"
+        aria-label="Tìm kiếm"
+        >
+      </autocomplete>
       <v-spacer />
       <div>
       <v-btn v-if="isAuthenticated===true">
@@ -107,11 +120,15 @@
     import LoginModal from './scomponents/LoginModal';
     import InformationModal from './scomponents/InformationModal';
     import SmallCart from './scomponents/SmallCart';
+    import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
+    import Autocomplete from '@trevoreyre/autocomplete-vue';
     export default {
         components : {
           LoginModal,
           SmallCart,
           InformationModal,
+          VueBootstrapTypeahead,
+          Autocomplete,
         },
         computed: {
           ...mapGetters('cart', ['cartItemCount']),
@@ -147,6 +164,13 @@
             // console.log(sta, state.authencation)
             this.getInformation({id : this.$store.state.authencation.id,
                                  access_token : this.$store.state.authencation.token});
+          },
+          search(input) {
+            if (input.length < 1) { return [] }
+            return countries.filter(country => {
+              return country.toLowerCase()
+                .startsWith(input.toLowerCase())
+            })
           }
         }
     }
