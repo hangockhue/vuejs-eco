@@ -16,8 +16,7 @@
                     </v-img>
 
                     <v-card-text class="text--primary text-center">
-                      <div>Upto 60% + Extra 10%</div>
-                      <div>Baggit, Zara, Fossil</div>
+                      <div>Giới thiệu</div>
                     </v-card-text>
 
                     <div class="text-center">
@@ -27,7 +26,7 @@
                         color="info"
                         route :to='"/shop/"+ category.id'
                       >
-                        Explore
+                        Xem
                       </v-btn>
                     </div>
                   </v-card>

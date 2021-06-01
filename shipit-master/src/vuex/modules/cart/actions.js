@@ -8,9 +8,16 @@ const removeProductFromCart = ({ commit }, product) => {
 }
 
 
+const addOrderToServer = ( {commit}, order ) => {
+    commit("REMOVE_ALL_PRODUCT")
+
+}
+
+
 
 
 export default {
     addProductToCart,
     removeProductFromCart,
+    addOrderToServer
 }

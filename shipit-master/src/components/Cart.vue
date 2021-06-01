@@ -4,7 +4,7 @@
 
       <p class="display-3 font-weight-light	text-center pa-4">GIỎ HÀNG</p>
       <v-row>
-        <v-col :cols="12" md="9" sm="12" >
+        <v-col :cols="12" md="8" sm="12" >
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -30,8 +30,8 @@
                   </v-list-item>
                 </td>
                 <td>${{product.product.price}}</td>
-                <td>
-                  <v-text-field
+                <td>{{ product.quantity }}</td>
+                  <!-- <v-text-field
                     class="pt-10"
                     label="Outlined"
                     style="width: 80px;"
@@ -40,9 +40,11 @@
                     :value=product.quantity
                     type="number"
                     min=1
-                    v-on:click="changeMount"
-                  ></v-text-field>
-                </td>
+                    v-on:focus="changeMount"
+                    
+                  ></v-text-field> -->
+                  
+                
                 <td>${{product.product.price*product.quantity}}</td>
                 <td><a @click.prevent="removeProductFromCart(product.product)">X</a></td>
               </tr>
@@ -50,35 +52,114 @@
             </template>
           </v-simple-table>
         </v-col>
-        <v-col :cols="12" md="3" sm="12" style="background-color: lightgray">
+        <v-col :cols="12" md="4" sm="12" style="background-color: lightgray">
           <p class="headline">Hóa đơn</p>
           <p class="overline">Phí ship đã được tính toàn và được cộng vào
           </p>
           <v-simple-table>
             <template v-slot:default>
               <tbody>
+                <tr>
+                  <v-text-field
+                    class="col-12"
+                    v-model="name"
+                    label="Tên"
+                    required
+                  ></v-text-field></tr>
+                 <tr>
+                  <v-text-field
+                    class="col-12"
+                    v-model="address"
+                    label="Địa chỉ"
+                    required
+                  ></v-text-field></tr>
+                 <tr>
+                  <v-text-field
+                    class="col-12"
+                    v-model="numberphone"
+                    label="Số điện thoại"
+                    required
+                  ></v-text-field></tr>
+                <!-- <tr>
+                    <input
+                      class="col-12 mx-center"
+                      single-line
+                      v-model="name"
+                      :rules="nameRules"
+                      placeholder="Tên"
+                      required
+                      v-bind:id="name"
+                    />
+                  </tr> -->
+                   <!-- <tr>
+                    <input
+                      class="col-12 mx-center"
+                      single-line
+                      v-model="address"
+                      :rules="nameRules"
+                      placeholder="Địa chỉ"
+                      required
+                      v-bind:id="name"
+                    
+                    />
+                  </tr> -->
+                   <!-- <tr>
+                    <input
+                      class="col-12 mx-center"
+                      single-line
+                      v-model="numberphone"
+                      :rules="nameRules"
+                      placeholder="Số điện thoại"
+                      required
+                      v-bind:id="name"
+                    
+                    />
+                  </tr> -->
+
               <tr>
                 <td>Tổng đơn hàng</td>
-                <td class="text-right" style="width: 50px;">{{cartTotalPrice}} ₫</td>
+                <td class="text-right" style="width: 150px;">{{cartTotalPrice}} ₫</td>
               </tr>
               <tr>
-                <td>Phí Ship</td>
-                <td class="text-right" style="width: 50px;">10.00 ₫</td>
+                <td>VAT</td>
+                <td class="text-right" style="width: 150px;">{{ 0.1*cartTotalPrice }}</td>
               </tr>
               <tr>
                 <td>Tổng</td>
-                <td class="text-right" style="width: 50px;"><b>{{cartTotalPrice + 10}} ₫</b></td>
+                <td class="text-right" style="width: 150px;"><b>{{cartTotalPrice + 0.1*cartTotalPrice}} ₫</b></td>
               </tr>
               </tbody>
             </template>
           </v-simple-table>
           <div class="text-center">
-            <v-btn class="primary white--text mt-5" outlined>PROCEED TO PAY</v-btn>
+            <v-btn class="primary white--text mt-5" @click="orderAction(), snackbar = true" outlined>Tiến hành đặt hàng</v-btn>
           </div>
         </v-col>
       </v-row>
+      <div class="text-center">
+        <v-snackbar
+          color="success"
+          v-model="snackbar"
+          :timeout="timeout"
+          right
+          top
+        >
+          {{ text }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="blue"
+              text
+              v-bind="attrs"
+              @click="snackbar = false"
+            >
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
+      </div>
     </v-container>
-    <v-card  class="accent" >
+    <!-- <v-card  class="accent" >
       <v-container>
         <v-row no-gutters>
           <v-col class="col-12 col-md-4 col-sm-12">
@@ -116,7 +197,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-card>
+    </v-card> -->
   </div>
 </template>
 <script>
@@ -130,11 +211,27 @@
         },
         methods: {
           ...mapActions("cart" , ['removeProductFromCart']),
+          ...mapActions("cart" , ['addOrderToServer']),
           changeMount: function(evt) {
               console.log(evt)
+          },
+          orderAction() {
+              console.log((this.cartTotalPrice + 10));
+              console.log(this.name);
+              console.log(this.numberphone);
+              console.log(this.address);
+              this.addOrderToServer();
+
           }
+          
         },
         data: () => ({
+            snackbar: false,
+            text: "Đơn hàng của bạn đạt thành công",
+            timeout: 2000,
+            name: '',
+            numberphone: '',
+            address: '',
             rating: 4.5,
             breadcrums: [
                 {

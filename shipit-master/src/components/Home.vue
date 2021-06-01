@@ -126,7 +126,7 @@
             tile
             outlined
           >
-            <v-card-title class="subheading ">Deals of the Day</v-card-title>
+            <v-card-title class="subheading ">Sản phẩm hot</v-card-title>
             <v-divider></v-divider>
             <div class="row">
               <div class="col-12 col-md-3 col-sm-6 col-xs-6 text-center">

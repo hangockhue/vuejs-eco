@@ -25,6 +25,9 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT,editable=False , null=True)
     total = models.IntegerField(null=True)
     content = models.CharField(max_length=100, null=True)
+    name = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True)
+    numberphone = models.CharField(max_length=100, null=True)
 
 class HighlightBig(models.Model):
 	description = models.CharField(max_length=50)

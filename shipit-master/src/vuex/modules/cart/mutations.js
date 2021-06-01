@@ -8,12 +8,16 @@ const ADD_TO_CART = (state, {product, quantity}) => {
         productInCart.quantity += quantity;
         return
     }
-
     state.cart.push({
         product, 
         quantity
     })
 }
+
+const REMOVE_ALL_PRODUCT = (state) => {
+    state.cart = []
+}
+
 const REMOVE_PRODUCT_FROM_CART = (state,product) => {
     state.cart = state.cart.filter(item => {
         return item.product.id != product.id;
@@ -23,5 +27,6 @@ const REMOVE_PRODUCT_FROM_CART = (state,product) => {
 
 export default {
     ADD_TO_CART,
-    REMOVE_PRODUCT_FROM_CART
+    REMOVE_PRODUCT_FROM_CART,
+    REMOVE_ALL_PRODUCT
 }
