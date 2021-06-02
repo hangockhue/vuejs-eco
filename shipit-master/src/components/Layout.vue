@@ -22,8 +22,8 @@
       <!-- <div> -->
         <ejs-autocomplete
           placeholder="Tìm kiếm sản phẩm"
-          :dataSource='categorys'
-          :fields="{value: 'name'}"
+          :dataSource='products'
+          :fields="{value: 'name_latin'}"
         >
         </ejs-autocomplete>
         <v-spacer />
@@ -52,7 +52,7 @@
 
       </div>
     </v-app-bar>
-    <login-modal :open="open" @onOpen= "openModal" ></login-modal>
+    <login-modal :open="authencation.open" @onOpen= "openModal" ></login-modal>
     <information-modal :open="information" @onOpen= "openInformation"></information-modal>
     <v-content>
       <v-bottom-navigation
@@ -61,7 +61,7 @@
         horizontal
       >
         <router-link to="/" class="v-btn">
-          <span>Trang chủ</span>
+          <span>Trang chủ </span>
         </router-link>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on }">
@@ -90,7 +90,9 @@
         </router-link> -->
       </v-bottom-navigation>
     </v-content>
-    <router-view/>
+
+    <router-view @openModal="openModal"/>
+
     <v-footer
       :padless="true"
     >
@@ -127,10 +129,12 @@
             isAuthenticated: state => state.authencation.isAuthenticated,
             user: state => state.authencation.user,
             authencation : state => state.authencation,
+            products: state => state.product.products,
           }),
         },
         mounted() {
           this.getCategorys();
+          this.getProducts();
         },
         data() {
           return {
@@ -154,8 +158,10 @@
           ...mapActions('categorys', ['getCategorys']),
           ...mapActions('authencation', ['logOut']),
           ...mapActions('authencation', ['getInformation']),
+          ...mapActions('product', ['getProducts']),
           openModal() {
-              this.open = !this.open
+              console.log(this.$store.state.authencation.open);
+              this.$store.state.authencation.open = !this.$store.state.authencation.open
           },
           openInformation() {
             this.information = !this.information;

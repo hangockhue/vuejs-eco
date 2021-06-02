@@ -21,7 +21,7 @@ class CategoryViewSet(generics.GenericAPIView, mixins.ListModelMixin,):
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-class OrderViewSet(generics.GenericAPIView, mixins.ListModelMixin):
+class OrderViewSet(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin,):
     permission_classes = [
         permissions.IsAuthenticated,
     ]

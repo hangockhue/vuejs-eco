@@ -29,7 +29,7 @@
                     </v-list-item-content>
                   </v-list-item>
                 </td>
-                <td>${{product.product.price}}</td>
+                <td>{{product.product.price}} ₫</td>
                 <td>{{ product.quantity }}</td>
                   <!-- <v-text-field
                     class="pt-10"
@@ -41,10 +41,10 @@
                     type="number"
                     min=1
                     v-on:focus="changeMount"
-                    
+
                   ></v-text-field> -->
-                  
-                
+
+
                 <td>${{product.product.price*product.quantity}}</td>
                 <td><a @click.prevent="removeProductFromCart(product.product)">X</a></td>
               </tr>
@@ -100,7 +100,7 @@
                       placeholder="Địa chỉ"
                       required
                       v-bind:id="name"
-                    
+
                     />
                   </tr> -->
                    <!-- <tr>
@@ -112,7 +112,7 @@
                       placeholder="Số điện thoại"
                       required
                       v-bind:id="name"
-                    
+
                     />
                   </tr> -->
 
@@ -132,7 +132,7 @@
             </template>
           </v-simple-table>
           <div class="text-center">
-            <v-btn class="primary white--text mt-5" @click="orderAction(), snackbar = true" outlined>Tiến hành đặt hàng</v-btn>
+            <v-btn class="primary white--text mt-5" @click="orderAction()" outlined>Tiến hành đặt hàng</v-btn>
           </div>
         </v-col>
       </v-row>
@@ -205,7 +205,7 @@
     export default {
         computed: {
           ...mapState({
-            cart: state => state.cart.cart
+            cart: state => state.cart.cart,
           }),
           ...mapGetters('cart',['cartTotalPrice']),
         },
@@ -216,14 +216,42 @@
               console.log(evt)
           },
           orderAction() {
-              console.log((this.cartTotalPrice + 10));
-              console.log(this.name);
-              console.log(this.numberphone);
-              console.log(this.address);
-              this.addOrderToServer();
+              if (this.$store.state.authencation.isAuthenticated != true) {
+                console.log("vui long dang nhap");
+                this.$store.state.authencation.open = !this.$store.state.authencation.open
+              } else if (this.$store.state.authencation.isAuthenticated == true) {
+                var dataPost = {}
+                dataPost['name'] = this.name
+                dataPost['numberphone'] = this.numberphone
+                dataPost['address'] = this.address
 
+                dataPost['total'] = this.cartTotalPrice + this.cartTotalPrice*0.1
+                dataPost['user'] = this.$store.state.authencation.user
+                // console.log((this.cartTotalPrice + 10));
+                // console.log(this.name);
+                // console.log(this.numberphone);
+                // console.log(this.address);
+                var dataOrder = [];
+                function getData (value, index, array) {
+                  console.log(value)
+                  dataOrder.push({"name" : value.product.name, "soluong": value.quantity})
+                };
+                // data
+                this.cart.forEach(getData);
+
+                dataPost['content'] = JSON.stringify(dataOrder)
+                console.log(dataPost);
+                this.addOrderToServer({
+                  dataPost: dataPost,
+                  access_token: this.$store.state.authencation.token
+                });
+                this.snackbar = true;
+                this.numberphone = "";
+                this.address = "";
+                this.name = "";
+              }
           }
-          
+
         },
         data: () => ({
             snackbar: false,

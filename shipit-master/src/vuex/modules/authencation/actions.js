@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const loadUser = ({ commit }) => {
-    
+
 }
 
 
@@ -45,7 +45,15 @@ const refreshToken = ({ commit },state) => {
 
 }
 
-const logOut = ({commit}) => { 
+const logOut = ({commit}) => {
+  axios.post('http://localhost:8000/signup/')
+      .then(response => {
+          commit('LOGIN_SUCCESS', response.data);
+      })
+      .catch(error => {
+          commit('ERROR', error);
+          console.log("Logout that bai");
+      })
         commit('LOGOUT_SUCCESS');
 }
 

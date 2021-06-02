@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import Category, Product, Order, Highlight, HighlightBig
+from rest_framework_simplejwt.tokens import RefreshToken,BlacklistMixin ,TokenError
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -17,6 +19,26 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['id'] = self.user.id
         return data
 
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    default_error_message = {
+        'bad_token': ('Token is expired or invalid')
+    }
+
+    def validate(self, attrs):
+        self.token = attrs['refresh']
+        return attrs
+
+    def save(self, **kwargs):
+
+        try:
+            print(self.token)
+            refresh = RefreshToken(self.token)
+            refresh.blacklist()
+
+        except TokenError:
+            self.fail('bad_token')
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -51,9 +73,10 @@ class HighlightSerializer(serializers.ModelSerializer):
         fields = ("__all__")
 
 class ProductSerializer(serializers.ModelSerializer):
+    name_latin = serializers.ReadOnlyField()
     class Meta:
         model = Product
-        fields = ("__all__")
+        fields = ("id","name", "price", "image", "category", "name_latin")
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order

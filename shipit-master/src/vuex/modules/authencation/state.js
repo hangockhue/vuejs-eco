@@ -4,5 +4,6 @@ export default {
     isLoading: false,
     user: null,
     id: null,
-    userInfor: null
+    userInfor: null,
+    open: true,
 }

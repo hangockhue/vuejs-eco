@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
 )
 from .user_api              import MyTokenObtainPairView
 from .ecommerce_api         import CategoryViewSet, ProductViewSet, OrderViewSet, ProductDetailViewSet, HighlightViewSet
-from .views                 import UserAPI
+from .views                 import UserAPI, LogoutAPIView
 urlpatterns = [
     # Your URLs...
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -16,5 +16,6 @@ urlpatterns = [
     path('api/products/', ProductViewSet.as_view(), name='products'),
     path('api/products/<int:pk>', ProductDetailViewSet.as_view(), name='productdetail'),
     path('api/order/', OrderViewSet.as_view(), name="order"),
-    path('api/hightlight/', HighlightViewSet.as_view(), name="hightlight" )
+    path('api/hightlight/', HighlightViewSet.as_view(), name="hightlight" ),
+    path('logout/', LogoutAPIView.as_view(), name="logout"),
 ]

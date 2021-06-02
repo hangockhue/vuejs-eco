@@ -5,20 +5,27 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import jwt
 
-from rest_framework.parsers import JSONParser 
+from rest_framework.parsers import JSONParser
 from rest_framework import generics, permissions, mixins, viewsets
 
 from django.db.models                   import Count, Sum
 from django.contrib.auth.models         import User
 from django.core.paginator              import Paginator
 from rest_framework.pagination          import PageNumberPagination
-from .serializers                       import UserSerializer
+from .serializers                       import UserSerializer, LogoutSerializer
 
+class LogoutAPIView(generics.GenericAPIView):
+    serializer_class = LogoutSerializer
 
-class LoginAPI(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, *args, **kwargs):
-        pass
+    def post(self, request):
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UserAPI(generics.RetrieveUpdateAPIView):
     permission_classes = [

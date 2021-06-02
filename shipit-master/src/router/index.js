@@ -6,6 +6,7 @@ import Product from '@/components/Product'
 import Post from '@/components/Post'
 import Cart from '@/components/Cart'
 import Layout from '@/components/Layout'
+import Search from '@/components/Search'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
           props: true
         },
         {
+          path:'search',
+          component: Search,
+          name: 'Search'
+        },
+        {
           path:'/product/:id',
           component:Product,
           name:'Product',
@@ -40,7 +46,8 @@ export default new Router({
         {
           path:'/cart',
           component:Cart,
-          name:'Cart'
+          name:'Cart',
+          props: true
         }
       ]
 

@@ -4,6 +4,32 @@ from django.contrib.auth.models import User
 import datetime
 
 
+import re
+import sys
+
+patterns = {
+    '[àáảãạăắằẵặẳâầấậẫẩ]': 'a',
+    '[đ]': 'd',
+    '[èéẻẽẹêềếểễệ]': 'e',
+    '[ìíỉĩị]': 'i',
+    '[òóỏõọôồốổỗộơờớởỡợ]': 'o',
+    '[ùúủũụưừứửữự]': 'u',
+    '[ỳýỷỹỵ]': 'y'
+}
+
+def convert(text):
+    """
+    Convert from 'Tieng Viet co dau' thanh 'Tieng Viet khong dau'
+    text: input string to be converted
+    Return: string converted
+    """
+    output = text
+    for regex, replace in patterns.items():
+        output = re.sub(regex, replace, output)
+        # deal with upper case
+        output = re.sub(regex.upper(), replace.upper(), output)
+    return output
+
 class Category(models.Model):
 	name = models.CharField(max_length=20, unique=True)\
 
@@ -15,6 +41,8 @@ class Product(models.Model):
     price = models.IntegerField()
     image = models.ImageField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
+    def name_latin(self):
+        return convert(self.name)
 
 class Highlight(models.Model):
     description = models.CharField(max_length=50)
