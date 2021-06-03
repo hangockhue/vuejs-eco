@@ -34,8 +34,7 @@ class LogoutSerializer(serializers.Serializer):
 
         try:
             print(self.token)
-            refresh = RefreshToken(self.token)
-            refresh.blacklist()
+            RefreshToken(self.token).blacklist()
 
         except TokenError:
             self.fail('bad_token')
