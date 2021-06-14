@@ -2,7 +2,7 @@
     <div :style="isOpen ? 'display:none' : 'display:block'">
         <div class="drawer"></div>
         <div class="my-modal">
-        
+
         <div class="modal-body">
             <div class="form-title text-center">
             <h4>Informtaion</h4>
@@ -10,9 +10,9 @@
             <div class="d-flex flex-column text-center">
             <form>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Tên :</label>
+                    <label class="col-sm-2 col-form-label">Tên</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" :value="userInfor.firstname" >
+                    <input type="text" class="form-control" :value="userInfor.first_name" >
                     </div>
                 </div>
                 <div class="form-group row">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Địa chỉ :</label>
+                    <label class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
                     <input type="text" class="form-control" :value="userInfor.username" >
                     </div>
@@ -38,9 +38,9 @@
             </form>
             </div>
             </div>
-        </div>  
+        </div>
     </div>
-   
+
 </template>
 
 <script>
@@ -50,7 +50,7 @@ export default {
     props: {
         open: Boolean
     },
-    
+
     data() {
         return {
             username:"",
@@ -67,8 +67,8 @@ export default {
     },
     methods: {
         ...mapActions('authencation', ['signIn']),
-        
-        
+
+
         test() {
             this.$emit('onOpen')
         },

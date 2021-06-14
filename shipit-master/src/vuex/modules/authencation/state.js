@@ -1,5 +1,5 @@
 export default {
-    token: localStorage.getItem('token'),
+    token: null,
     isAuthenticated : null,
     isLoading: false,
     user: null,

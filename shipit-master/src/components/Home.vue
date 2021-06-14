@@ -267,7 +267,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-card  class="accent" >
+    <!-- <v-card  class="accent" >
       <v-container>
         <v-row no-gutters>
           <v-col class="col-12 col-md-4 col-sm-12">
@@ -305,7 +305,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-card>
+    </v-card> -->
   </div>
 </template>
 

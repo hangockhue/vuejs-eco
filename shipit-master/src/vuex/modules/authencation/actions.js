@@ -19,6 +19,7 @@ const signIn = ({ commit }, {username, password}) => {
             commit('LOGIN_SUCCESS', response.data);
             console.log(response.data);
             console.log("Login thanh cong");
+            window.localStorage.setItem("token", JSON.stringify(response.data));
         })
         .catch(error => {
             commit('ERROR', error);
@@ -41,9 +42,14 @@ const getInformation = ({ commit } , {id, access_token}) => {
     })
 }
 
-const refreshToken = ({ commit },state) => {
-
+const refreshToken = ({ commit }) => {
+    data = {"refresh" : JSON.parse(window.localStorage.getItem('item'))}
+    axios.post("http://localhost:8000/token/refresh/", body)
+      .then(response => {
+        commit("REFRESHTOKEN", response.data)
+      })
 }
+
 
 const logOut = ({commit}) => {
   axios.post('http://localhost:8000/signup/')
@@ -62,4 +68,5 @@ export default {
     loadUser,
     logOut,
     getInformation,
+    refreshToken,
 }

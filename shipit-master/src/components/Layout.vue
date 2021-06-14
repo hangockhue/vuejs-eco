@@ -24,6 +24,8 @@
           placeholder="Tìm kiếm sản phẩm"
           :dataSource='products'
           :fields="{value: 'name_latin'}"
+          v-on:change="test"
+
         >
         </ejs-autocomplete>
         <v-spacer />
@@ -135,6 +137,7 @@
         mounted() {
           this.getCategorys();
           this.getProducts();
+          this.loadtoken();
         },
         data() {
           return {
@@ -158,6 +161,7 @@
           ...mapActions('categorys', ['getCategorys']),
           ...mapActions('authencation', ['logOut']),
           ...mapActions('authencation', ['getInformation']),
+          ...mapActions('authencation', ['refreshToken']),
           ...mapActions('product', ['getProducts']),
           openModal() {
               console.log(this.$store.state.authencation.open);
@@ -168,7 +172,37 @@
             // console.log(sta, state.authencation)
             this.getInformation({id : this.$store.state.authencation.id,
                                  access_token : this.$store.state.authencation.token});
+          },
+          loadtoken () {
+            var token = JSON.parse(window.localStorage.getItem("token"))
+            if (token != null) {
+              this.$store.state.authencation.token = token.access
+              this.$store.state.authencation.id = token.refresh
+              this.$store.state.authencation.user = token.username
+              this.$store.state.authencation.isAuthenticated = true
+              this.$store.state.authencation.isLoading = false
+              // state.token = response.access;
+              // state.user = response.username;
+              // state.id = response.id
+              // state.isAuthenticated = true;
+              // state.isLoading =  false;
+            };
+
+
+          },
+          test(e) {
+              console.log(e.itemData);
+              var id = e.itemData.id
+              //redirect(id)
+              //this.$router.push({path:`/product/${id}`} );
+              // open new link
+              window.open(`/product/${id}`, "_self")
+          },
+
+          redirect(id) {
+            this.$router.push(`/product/${id}`);
           }
+
         }
     }
 </script>

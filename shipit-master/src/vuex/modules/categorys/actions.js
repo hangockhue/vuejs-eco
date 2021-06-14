@@ -10,7 +10,7 @@ const getCategorys = ({ commit }) => {
 }
 
 const getHightlight = ({ commit }) => {
-  axios.get('http://localhost:8001/api/hightlight/')
+  axios.get('http://localhost:8000/api/hightlight/')
         .then(response => {
             commit('SET_HIGHTLIGHT', response.data);
         })

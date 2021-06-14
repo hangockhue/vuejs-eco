@@ -30,7 +30,6 @@ const addOrderToServer = ( {commit}, {dataPost, access_token}, order ) => {
 
 
 
-
 export default {
     addProductToCart,
     removeProductFromCart,
